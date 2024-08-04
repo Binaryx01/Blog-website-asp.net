@@ -15,7 +15,7 @@ namespace wlogit.Controllers
 
         public IActionResult Index()
         {
-
+            SharedLayOutData();
             IEnumerable<Post> myPost = db.Tbl_Post;
             return View(myPost);
         }
@@ -24,10 +24,21 @@ namespace wlogit.Controllers
         [Route("Home/Post/{Slug}")]
         public IActionResult Post(string Slug)
         {
+            SharedLayOutData();
             var DetailedPost = db.Tbl_Post.Where(x=>x.Slug==Slug).FirstOrDefault();
             return View(DetailedPost);
         }
 
 
+        public void SharedLayOutData()
+        { 
+            ViewBag.Post =db.Tbl_Post;
+            ViewBag.Profile =db.Tbl_Profile.FirstOrDefault();
+        }
+
     }
+
+
+
+
 }
