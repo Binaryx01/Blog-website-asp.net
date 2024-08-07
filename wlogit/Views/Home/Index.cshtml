@@ -1,4 +1,5 @@
-﻿@using wlogit.Models
+﻿@using System.Web
+@using wlogit.Models
 @model IEnumerable<Post>
 
 
@@ -19,12 +20,14 @@
                 @if(item.Content.Length<100)
                 {
 
-                    @item.Content
+                  @*   @item.Content *@
+                    @Html.Raw(HttpUtility.HtmlDecode(item.Content))
 
                 }
                 else
                 {
-                    @item.Content.Substring(0,100)
+               @*      @item.Content.Substring(0,100) *@
+                    @Html.Raw(HttpUtility.HtmlDecode(item.Content.Substring(0,100)))
                 
                 }
 

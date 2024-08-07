@@ -1,6 +1,9 @@
 ﻿
+
+
 @using wlogit.Models
 @model Post
+@using System.Web;
 
 <div class="w3-card-4 w3-margin w3-white">
     <img src="~/images/@Model.Image" alt="Nature" style="width:100%">
@@ -12,7 +15,8 @@
 
     <div class="w3-container">
         <p>
-            @Model.Content
+          @*   @Model.Content *@
+            @Html.Raw(HttpUtility.HtmlDecode(Model.Content))
         </p>
 
     </div>
